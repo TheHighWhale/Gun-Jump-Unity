@@ -9,10 +9,7 @@ public class MainMenu : MonoBehaviour
     public Canvas MenuCanvas;
     public Canvas weaponSelectionCanvas;
     public Canvas settingsCanvas;
-    public Button settingsButton;
-    public Button startGameButton;
 
-    // Start is called before the first frame update
     void Start()
     {
         MenuCanvas.enabled = true;

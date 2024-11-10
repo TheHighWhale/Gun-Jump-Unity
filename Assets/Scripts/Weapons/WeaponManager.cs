@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public Transform weaponMountPoint; // Reference to the weapon mount on the player
-    private GameObject currentWeapon;  // Currently equipped weapon
+    public Transform weaponMountPoint; // Place where weapon attaches on the player
 
-    public void EquipWeapon(GameObject weaponPrefab)
+    void Start()
     {
-        if (currentWeapon != null)
+        if (GameManager.instance.selectedWeaponPrefab != null)
         {
-            Destroy(currentWeapon);  // Remove any existing weapon
+            EquipWeapon(GameManager.instance.selectedWeaponPrefab);
         }
-        currentWeapon = Instantiate(weaponPrefab, weaponMountPoint.position, weaponMountPoint.rotation, weaponMountPoint);
-        // Additional setup for weapon mechanics, if needed
+    }
+
+    void EquipWeapon(GameObject weaponPrefab)
+    {
+        Instantiate(weaponPrefab, weaponMountPoint.position, weaponMountPoint.rotation, weaponMountPoint);
     }
 }
