@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject selectedWeaponPrefab; // Stores the selected weapon prefab
     public bool[] unlockedWeapons; // Tracks unlocked weapons (true = unlocked, false = locked)
+    public GameObject[] weaponPrefabs; // Store weapon prefabs
 
     void Awake()
     {
@@ -23,8 +24,19 @@ public class GameManager : MonoBehaviour
         if (unlockedWeapons == null || unlockedWeapons.Length == 0)
         {
             unlockedWeapons = new bool[weaponPrefabs.Length];
-            unlockedWeapons[0] = true; // Assume first weapon is always unlocked (or any starting weapon)
+            unlockedWeapons[0] = true; // Assume first weapon is always unlocked
         }
+    }
+
+    // Set the selected weapon in GameManager
+    public void SetSelectedWeapon(GameObject weaponPrefab)
+    {
+        selectedWeaponPrefab = weaponPrefab;
+    }
+
+    public bool IsWeaponUnlocked(int index)
+    {
+        return unlockedWeapons[index];
     }
 
     // Call this method to unlock a new weapon
@@ -34,10 +46,5 @@ public class GameManager : MonoBehaviour
         {
             unlockedWeapons[index] = true;
         }
-    }
-
-    public bool IsWeaponUnlocked(int index)
-    {
-        return unlockedWeapons[index];
     }
 }
