@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
+    public float jumpForce = 10f;
     private bool isGrounded;
     private Rigidbody2D rb;
-    public float jumpForce = 10f; // Adjust jump height as needed
+    public Weapon equippedWeapon;  // Directly reference the weapon
+    public Transform gunTransform;
 
     void Start()
     {
@@ -22,20 +22,36 @@ public class PlayerController : MonoBehaviour
         {
             direction.x = -1f;
         }
-
         if (Input.GetKey(KeyCode.D))
         {
             direction.x = 1f;
         }
 
-        rb.velocity = new Vector2(direction.x * speed, rb.velocity.y); // Maintain vertical velocity 
+        rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
 
-        // Jump logic (only jump when grounded)
+        // Jump when grounded
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            isGrounded = false; // Reset grounded state on jump
+            isGrounded = false;
         }
+
+        // Rotate gun
+        RotateGun();
+
+        // Shoot weapon directly
+        if (Input.GetButton("Fire1") && equippedWeapon != null)
+        {
+            equippedWeapon.Shoot();
+        }
+    }
+
+    void RotateGun()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = mousePos - gunTransform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        gunTransform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     void FixedUpdate()
@@ -43,4 +59,3 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(transform.position + Vector3.down * 0.1f, 0.1f, LayerMask.GetMask("Ground"));
     }
 }
-
