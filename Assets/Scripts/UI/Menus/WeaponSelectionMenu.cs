@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class WeaponSelectionMenu : MonoBehaviour
 {
     public List<Button> weaponButtons; // Buttons for each weapon
-    public List<Image> weaponImages; // Images for each weapon button
+    public List<RawImage> weaponImages; // Images for each weapon button
     public List<GameObject> weaponPrefabs; // Prefabs of all available weapons
 
     void Start()
@@ -49,5 +49,10 @@ public class WeaponSelectionMenu : MonoBehaviour
     {
         GameManager.instance.UnlockWeapon(index);
         UpdateWeaponButtonState(index); // Update the UI for the newly unlocked weapon
+    }
+
+    public void MouseHoverHighlight()
+    {
+
     }
 }
