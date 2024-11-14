@@ -24,7 +24,7 @@ public class WeaponSelectionMenu : MonoBehaviour
         if (GameManager.instance.IsWeaponUnlocked(index))
         {
             GameManager.instance.SetSelectedWeapon(weaponPrefabs[index]);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameplayScene");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Tutorial Level");
         }
     }
 
@@ -49,10 +49,5 @@ public class WeaponSelectionMenu : MonoBehaviour
     {
         GameManager.instance.UnlockWeapon(index);
         UpdateWeaponButtonState(index); // Update the UI for the newly unlocked weapon
-    }
-
-    public void MouseHoverHighlight()
-    {
-
     }
 }

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Rigidbody2D rb;
     public Weapon equippedWeapon;  // Directly reference the weapon
-    public Transform gunTransform;
+    public Transform weaponTransform;
 
     void Start()
     {
@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(equippedWeapon != null)
+        {
+            RotateGun();
+        }
+
         Vector2 direction = Vector2.zero;
 
         if (Input.GetKey(KeyCode.A))
@@ -49,9 +54,9 @@ public class PlayerController : MonoBehaviour
     void RotateGun()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePos - gunTransform.position;
+        Vector2 direction = mousePos - weaponTransform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        gunTransform.rotation = Quaternion.Euler(0, 0, angle);
+        weaponTransform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     void FixedUpdate()

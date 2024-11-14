@@ -8,6 +8,7 @@ public class Handgun : Weapon
     {
         fireRate = .8f;  // Limit firing rate to one shot per second
         damage = 10f;   // Set initial damage for the handgun (adjust as needed)
+        recoilForce = 20f;
     }
 
     protected override void FireProjectile()
