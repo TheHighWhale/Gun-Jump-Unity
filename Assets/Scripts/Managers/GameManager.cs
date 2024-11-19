@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject selectedWeaponPrefab; // Stores the selected weapon prefab
     public bool[] unlockedWeapons; // Tracks unlocked weapons (true = unlocked, false = locked)
     public GameObject[] weaponPrefabs; // Store weapon prefabs
+    public bool levelActive = false;
 
     void Awake()
     {

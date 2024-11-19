@@ -25,6 +25,7 @@ public class WeaponSelectionMenu : MonoBehaviour
         {
             GameManager.instance.SetSelectedWeapon(weaponPrefabs[index]);
             UnityEngine.SceneManagement.SceneManager.LoadScene("Tutorial Level");
+            GameManager.instance.levelActive = true;
         }
     }
 
