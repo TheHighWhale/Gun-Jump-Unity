@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -38,5 +39,26 @@ public class PauseMenu : MonoBehaviour
         {
             return;
         }
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void ShowSettings()
+    {
+
+    }
+
+    public void Resume()
+    {
+        pauseCanvas.enabled = false;
+        paused = false;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
