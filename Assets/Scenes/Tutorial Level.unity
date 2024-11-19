@@ -420,7 +420,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2949,6 +2949,9 @@ MonoBehaviour:
       to learn how to play.
     requiresAction: 0
     actionName: 
+  - tutorialText: Try moving left and right with A/D
+    requiresAction: 1
+    actionName: Horizontal
   - tutorialText: Try jumping with the space bar
     requiresAction: 1
     actionName: Jump

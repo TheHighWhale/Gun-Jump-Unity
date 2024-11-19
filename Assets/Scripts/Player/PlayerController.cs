@@ -16,22 +16,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(equippedWeapon != null)
+        if (equippedWeapon != null)
         {
             RotateGun();
         }
 
-        Vector2 direction = Vector2.zero;
+        // Get horizontal input from the "Movement" axis
+        float horizontalInput = Input.GetAxis("Horizontal");
+        Vector2 direction = new Vector2(horizontalInput, 0f);
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            direction.x = -1f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            direction.x = 1f;
-        }
-
+        // Set the player's velocity based on input
         rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
 
         // Jump when grounded
