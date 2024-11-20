@@ -4077,7 +4077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1591458043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4352,6 +4352,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898790891}
   m_CullTransparentMesh: 1
+--- !u!1 &2001086483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2001086485}
+  - component: {fileID: 2001086484}
+  m_Layer: 0
+  m_Name: Tutorial Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2001086484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001086483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1cba98290b5174bbab411535555c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialSteps:
+  - tutorialText: Oh hey, new to the game i see? Don't jump the gun, take a moment
+      to learn how to play.
+    requiresAction: 0
+    actionName: 
+  - tutorialText: Try moving left and right with the A/D keys
+    requiresAction: 1
+    actionName: Horizontal
+  - tutorialText: Now try jumping with the space bar
+    requiresAction: 1
+    actionName: Jump
+  tutorialTextBox: {fileID: 1898790893}
+--- !u!4 &2001086485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001086483}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 491.66113, y: 213.98718, z: 1.460782}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2073931795
 GameObject:
   m_ObjectHideFlags: 0
@@ -4470,3 +4526,4 @@ SceneRoots:
   - {fileID: 1670577114}
   - {fileID: 2073931799}
   - {fileID: 564001459}
+  - {fileID: 2001086485}
