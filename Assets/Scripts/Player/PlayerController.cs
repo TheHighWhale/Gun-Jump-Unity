@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 20f;
     public float jumpForce = 10f;
-    private bool isGrounded;
+    public bool isGrounded;
     private Rigidbody2D rb;
     public Weapon equippedWeapon;  // Directly reference the weapon
     public Transform weaponTransform;

@@ -9,7 +9,8 @@ public class TutorialManager : MonoBehaviour
         public string tutorialText; // Text to display
         public bool requiresAction; // If true, waits for a specific action
         public string actionName; // The required action (e.g., "Jump", "Shoot")
-        public bool isComplexAction; // If true, track complex actions
+        public bool isGunJump;
+        public bool isKillEnemy;
     }
 
     public TutorialStep[] tutorialSteps;
@@ -19,9 +20,11 @@ public class TutorialManager : MonoBehaviour
     private bool jumpPerformed = false;
     private float jumpTime = 0f;
     private float allowedActionWindow = 0.5f; // Time frame to perform the action
+    public TutorialEnemy tutorialEnemy;
 
     private void Start()
     {
+        tutorialEnemy.gameObject.SetActive(false);
         ShowCurrentStep();
     }
 
@@ -29,9 +32,13 @@ public class TutorialManager : MonoBehaviour
     {
         var current = tutorialSteps[currentStep];
 
-        if (current.isComplexAction)
+        if (current.isKillEnemy)
         {
-            TrackComplexAction();
+            KillEnemy();
+        }
+        else if (current.isGunJump)
+        {
+            GunJump();
         }
         else if (current.requiresAction)
         {
@@ -69,7 +76,7 @@ public class TutorialManager : MonoBehaviour
         tutorialTextBox.text = "Tutorial Complete!";
     }
 
-    private void TrackComplexAction()
+    private void GunJump()
     {
         // Detect jump
         if (Input.GetButtonDown("Jump"))
@@ -89,10 +96,20 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    private void KillEnemy()
+    {
+        tutorialEnemy.gameObject.SetActive(true);
+
+        if (tutorialEnemy.dead)
+        {
+            AdvanceStep();
+        }
+    }
+
     private bool IsShootingDownward()
     {
         // Replace this logic with actual shooting direction detection from your weapon system
         Vector3 aimDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        return aimDirection.y < -0.5f; // Example: Downward threshold
+        return aimDirection.y < -0.7f; // Example: Downward threshold
     }
 }
