@@ -20,17 +20,24 @@ public abstract class Weapon : MonoBehaviour
             // Fire a projectile in the current gun direction
             FireProjectile();
 
-            // Apply a weak recoil force if shooting downward
+            // Apply a recoil force if shooting downward
             if (gunTransform.right.y < -0.7f) // Checks if the gun is angled downward
             {
                 Rigidbody2D playerRb = GetComponentInParent<Rigidbody2D>();
                 if (playerRb != null)
                 {
-                    playerRb.AddForce(-gunTransform.right * recoilForce, ForceMode2D.Impulse);
+                    float downwardVelocity = Mathf.Min(playerRb.velocity.y, 0); // Only consider downward velocity (negative y)
+
+                    // Adjust recoil force to counteract downward velocity
+                    float adjustedRecoilForce = recoilForce - downwardVelocity;
+
+                    // Apply the recoil force
+                    playerRb.AddForce(-gunTransform.right * adjustedRecoilForce, ForceMode2D.Impulse);
                 }
             }
         }
     }
+
 
     protected virtual void FireProjectile()
     {
