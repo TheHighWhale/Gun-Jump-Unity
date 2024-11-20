@@ -20,27 +20,21 @@ public class TutorialManager : MonoBehaviour
     private bool jumpPerformed = false;
     private float jumpTime = 0f;
     private float allowedActionWindow = 0.5f; // Time frame to perform the action
-    public TutorialEnemy tutorialEnemy;
+    public TutorialEnemyStatic tutorialEnemyStatic;
+    public int enemyCount = 3;
+    public ExitDoor tutorialExit;
 
     private void Start()
     {
-        tutorialEnemy.gameObject.SetActive(false);
+        tutorialEnemyStatic.gameObject.SetActive(false);
         ShowCurrentStep();
     }
 
     private void Update()
     {
         var current = tutorialSteps[currentStep];
-
-        if (current.isKillEnemy)
-        {
-            KillEnemy();
-        }
-        else if (current.isGunJump)
-        {
-            GunJump();
-        }
-        else if (current.requiresAction)
+ 
+        if (current.requiresAction)
         {
             if (Input.GetButtonDown(current.actionName))
             {
@@ -49,6 +43,15 @@ public class TutorialManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
+            AdvanceStep();
+        }
+        else if (current.isGunJump)
+        {
+            GunJump();
+        }
+        else if (current.isKillEnemy && enemyCount <= 0)
+        {
+            tutorialExit.UnlockExit();
             AdvanceStep();
         }
     }
@@ -96,14 +99,9 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void KillEnemy()
+    public void KillEnemy()
     {
-        tutorialEnemy.gameObject.SetActive(true);
-
-        if (tutorialEnemy.dead)
-        {
-            AdvanceStep();
-        }
+        enemyCount--;
     }
 
     private bool IsShootingDownward()
