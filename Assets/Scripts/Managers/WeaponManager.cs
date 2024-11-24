@@ -57,4 +57,3 @@ public class WeaponManager : MonoBehaviour
         return weaponInstance;
     }
 }
-

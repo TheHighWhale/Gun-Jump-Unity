@@ -13,6 +13,8 @@ public class AK : Weapon
 
         currentAmmo = maxAmmo; // Initialize ammo in magazine
         currentSpareAmmo = maxSpareAmmo; // Initialize spare ammo
+
+        reloadSound = Resources.Load<AudioClip>("Audio/Weapons/Basic reload");
+        shootSound = Resources.Load<AudioClip>("Audio/Weapons/Pistol shot");
     }
 }
-

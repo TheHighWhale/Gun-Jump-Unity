@@ -4,30 +4,44 @@ using TMPro;
 
 public abstract class Weapon : MonoBehaviour
 {
-    // Weapon properties
+    [Header("Weapon Properties")]
     public float damage;
     public float fireRate;
     public GameObject projectilePrefab;
     public Transform gunTransform;
     public float recoilForce = 2f;  // Weak recoil force; can be adjusted in the Inspector
     public float projectileSpeed; // Bullet speed
+    protected float nextFireTime = 0f;
 
-    // Ammo and reload settings
+    [Header("Ammo and Reload")]
     public int maxAmmo ; // Maximum ammo per magazine
     public int currentAmmo; // Current ammo in the magazine
     public int maxSpareAmmo; // Maximum spare ammo capacity
     public int currentSpareAmmo; // Current spare ammo count
     public float reloadTime = 2f; // Time taken to reload
     public TMP_Text ammoText; // Reference to the ammo UI
-
     private bool isReloading = false;
-    protected float nextFireTime = 0f;
+
+    [Header("Audio")]
+    public AudioClip reloadSound;
+    public AudioClip shootSound;
+    private AudioSource audioSource; // Cached reference to the weapon's audio source
+
 
     void Start()
     {
-        currentAmmo = maxAmmo; // Initialize ammo in magazine
-        currentSpareAmmo = maxSpareAmmo; // Initialize spare ammo
-        UpdateAmmoUI(); // Update the UI
+        // Cache the audio source on the weapon
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogWarning("No AudioSource found on this weapon!");
+        }
+
+        // Initialize ammo
+        currentAmmo = maxAmmo;
+        currentSpareAmmo = maxSpareAmmo;
+
+        UpdateAmmoUI();
     }
 
     public virtual void Shoot()
@@ -52,6 +66,9 @@ public abstract class Weapon : MonoBehaviour
             // Fire a projectile in the current gun direction
             FireProjectile();
 
+            // Play shooting sound
+            PlayAudio(shootSound);
+
             // Apply a recoil force if shooting downward
             if (gunTransform.right.y < -0.7f) // Checks if the gun is angled downward
             {
@@ -72,6 +89,7 @@ public abstract class Weapon : MonoBehaviour
             UpdateAmmoUI(); // Update the UI
         }
     }
+
 
     protected virtual void FireProjectile()
     {
@@ -100,12 +118,8 @@ public abstract class Weapon : MonoBehaviour
         isReloading = true;
         Debug.Log("Reloading...");
 
-        // Play reload audio (if applicable)
-        AudioSource audioSource = GetComponent<AudioSource>();
-        if (audioSource != null)
-        {
-            audioSource.Play();
-        }
+        // Play reload audio
+        PlayAudio(reloadSound);
 
         yield return new WaitForSeconds(reloadTime);
 
@@ -121,6 +135,7 @@ public abstract class Weapon : MonoBehaviour
         Debug.Log("Reload complete.");
     }
 
+
     private void UpdateAmmoUI()
     {
         if (ammoText != null)
@@ -130,6 +145,18 @@ public abstract class Weapon : MonoBehaviour
         else
         {
             Debug.LogWarning("AmmoText UI reference is not assigned.");
+        }
+    }
+
+    protected void PlayAudio(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+        else if (clip == null)
+        {
+            Debug.LogWarning("AudioClip is null and cannot be played.");
         }
     }
 }
