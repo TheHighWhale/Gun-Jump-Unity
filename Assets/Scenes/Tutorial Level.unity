@@ -631,6 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponMountPoint: {fileID: 228646955}
   playerController: {fileID: 228646957}
+  ammoText: {fileID: 692830769}
 --- !u!1 &432887490
 GameObject:
   m_ObjectHideFlags: 0
@@ -4212,7 +4213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1591458043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4380,7 +4381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1700182744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4672,7 +4673,7 @@ MonoBehaviour:
   tutorialTextBox: {fileID: 1898790893}
   tutorialEnemyStatic: {fileID: 8962335171027267595}
   enemyCount: 3
-  tutorialExit: {fileID: 0}
+  tutorialExit: {fileID: 5197906019219646681}
 --- !u!4 &2001086485
 Transform:
   m_ObjectHideFlags: 0
@@ -4706,7 +4707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2073931796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4862,6 +4863,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 210a3beed5c0f1e48a90474e6014819c, type: 3}
+--- !u!114 &5197906019219646681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 181227471927031167, guid: 210a3beed5c0f1e48a90474e6014819c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5197906019219646680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d985250a02904345b02645034e0db72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8962335171027267592
 PrefabInstance:
   m_ObjectHideFlags: 0

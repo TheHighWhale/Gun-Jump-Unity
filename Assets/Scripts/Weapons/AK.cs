@@ -1,27 +1,18 @@
 using UnityEngine;
 
 public class AK : Weapon
-{
-    public float projectileSpeed = 30f; // Bullet speed
-
-    private void Start()
+{ 
+    private void Awake()
     {
         fireRate = 5;  // Limit firing rate to one shot per second
         damage = 10f;   // Set initial damage for the handgun (adjust as needed)
-    }
+        recoilForce = 10f;
+        maxAmmo = 24;
+        maxSpareAmmo = 240;
+        projectileSpeed = 30f;
 
-    protected override void FireProjectile()
-    {
-        Vector3 spawnPosition = gunTransform.position + gunTransform.right * 0.5f;
-        GameObject projectile = Instantiate(projectilePrefab, spawnPosition, gunTransform.rotation);
-
-        // Apply damage to the projectile
-        Projectile projScript = projectile.GetComponent<Projectile>();
-        if (projScript != null)
-        {
-            projScript.damage = damage;
-            projScript.speed = projectileSpeed;  // Set the speed of the projectile here
-        }
+        currentAmmo = maxAmmo; // Initialize ammo in magazine
+        currentSpareAmmo = maxSpareAmmo; // Initialize spare ammo
     }
 }
 

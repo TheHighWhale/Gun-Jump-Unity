@@ -1,9 +1,11 @@
 using UnityEngine;
+using TMPro; // Ensure you include TextMeshPro namespace
 
 public class WeaponManager : MonoBehaviour
 {
     public Transform weaponMountPoint; // Where the weapon should attach
     public PlayerController playerController; // Reference to PlayerController script on the player
+    public TMP_Text ammoText; // Reference to the ammo text UI
 
     void Start()
     {
@@ -21,6 +23,16 @@ public class WeaponManager : MonoBehaviour
 
                 // Optionally, you can also assign the weaponTransform here if needed
                 playerController.weaponTransform = weaponInstance.transform;
+
+                // Link the ammo UI to the weapon
+                if (ammoText != null)
+                {
+                    weaponComponent.ammoText = ammoText; // Assign the UI reference to the weapon
+                }
+                else
+                {
+                    Debug.LogWarning("AmmoText UI reference is not assigned in WeaponManager.");
+                }
 
                 Debug.Log("Weapon selected and equipped.");
             }
@@ -45,3 +57,4 @@ public class WeaponManager : MonoBehaviour
         return weaponInstance;
     }
 }
+
