@@ -44,6 +44,14 @@ public abstract class Weapon : MonoBehaviour
         UpdateAmmoUI();
     }
 
+    private void Update()
+    {
+        if (Input.GetButton("Reload"))
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
     public virtual void Shoot()
     {
         if (isReloading)
