@@ -7,7 +7,7 @@ public class Handgun : Weapon
         fireRate = 0.8f;  // Limit firing rate to one shot per second
         damage = 10f;   // Set initial damage for the handgun (adjust as needed)
         recoilForce = 20f;
-        maxAmmo = 1;
+        maxAmmo = 12;
         maxSpareAmmo = 240;
         projectileSpeed = 30f; // Use the inherited property
 

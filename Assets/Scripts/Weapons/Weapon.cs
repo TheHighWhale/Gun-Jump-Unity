@@ -27,7 +27,6 @@ public abstract class Weapon : MonoBehaviour
     public AudioClip shootSound;
     private AudioSource audioSource; // Cached reference to the weapon's audio source
 
-
     void Start()
     {
         // Cache the audio source on the weapon
