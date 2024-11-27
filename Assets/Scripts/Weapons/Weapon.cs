@@ -27,6 +27,8 @@ public abstract class Weapon : MonoBehaviour
     public AudioClip shootSound;
     private AudioSource audioSource; // Cached reference to the weapon's audio source
 
+    public PlayerController player;
+
     void Start()
     {
         // Cache the audio source on the weapon
@@ -41,6 +43,7 @@ public abstract class Weapon : MonoBehaviour
         currentSpareAmmo = maxSpareAmmo;
 
         UpdateAmmoUI();
+
     }
 
     private void Update()
@@ -53,6 +56,8 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Shoot()
     {
+        PlayerController player = GetComponentInParent<PlayerController>();
+
         if (isReloading)
         {
             Debug.Log("Cannot shoot while reloading.");
@@ -76,21 +81,25 @@ public abstract class Weapon : MonoBehaviour
             // Play shooting sound
             PlayAudio(shootSound);
 
-            // Apply a recoil force if shooting downward
-            if (gunTransform.right.y < -0.7f) // Checks if the gun is angled downward
+            if(player.isGrounded)
             {
-                Rigidbody2D playerRb = GetComponentInParent<Rigidbody2D>();
-                if (playerRb != null)
+                // Apply a recoil force if shooting downward
+                if (gunTransform.right.y < -0.7f) // Checks if the gun is angled downward
                 {
-                    float downwardVelocity = Mathf.Min(playerRb.velocity.y, 0); // Only consider downward velocity (negative y)
+                    Rigidbody2D playerRb = GetComponentInParent<Rigidbody2D>();
+                    if (playerRb != null)
+                    {
+                        float downwardVelocity = Mathf.Min(playerRb.velocity.y, 0); // Only consider downward velocity (negative y)
 
-                    // Adjust recoil force to counteract downward velocity
-                    float adjustedRecoilForce = recoilForce - downwardVelocity;
+                        // Adjust recoil force to counteract downward velocity
+                        float adjustedRecoilForce = recoilForce - downwardVelocity;
 
-                    // Apply the recoil force
-                    playerRb.AddForce(-gunTransform.right * adjustedRecoilForce, ForceMode2D.Impulse);
+                        // Apply the recoil force
+                        playerRb.AddForce(-gunTransform.right * adjustedRecoilForce, ForceMode2D.Impulse);
+                    }
                 }
             }
+            
 
             currentAmmo--; // Reduce ammo count
             UpdateAmmoUI(); // Update the UI
