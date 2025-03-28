@@ -97,7 +97,6 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-
     protected virtual void FireProjectile()
     {
         Vector3 spawnPosition = gunTransform.position + gunTransform.right * 0.5f;
@@ -141,7 +140,6 @@ public abstract class Weapon : MonoBehaviour
 
         Debug.Log("Reload complete.");
     }
-
 
     private void UpdateAmmoUI()
     {
