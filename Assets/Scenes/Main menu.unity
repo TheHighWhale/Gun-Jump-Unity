@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1423,7 +1422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedWeaponPrefab: {fileID: 0}
-  unlockedWeapons: 0101
+  unlockedWeapons: "\x01\x01"
   weaponPrefabs:
   - {fileID: 192872496994291837, guid: 449f6ad16571a224a8a1348b7de8a9bb, type: 3}
   - {fileID: 905314856845332481, guid: a0fce471f451e5a4d948f48a549656e7, type: 3}
