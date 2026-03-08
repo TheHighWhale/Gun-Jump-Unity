@@ -44,12 +44,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpPressed = false;
         }
-
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = (mousePos - weapon.transform.position);
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        weapon.transform.rotation = Quaternion.Euler(0, 0, angle);
-        Debug.DrawLine(weapon.transform.position, weapon.transform.position + (Vector3)direction.normalized * 2f, Color.red, 0.5f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
